@@ -947,9 +947,272 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-cyan); bo
 
 /* Shake animation class */
 .shake { animation: shake 0.5s ease; }
+
+/* ==================== SPLASH SCREEN ==================== */
+.splash-screen {
+  position: fixed; inset: 0; z-index: 99999;
+  background: #02020a;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.splash-screen.hidden {
+  opacity: 0; transform: scale(1.1); pointer-events: none;
+}
+.splash-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(0,212,255,0.15) 0%, transparent 70%),
+              url('./assets/loading-screen.jpg') center/cover no-repeat;
+  opacity: 0.9;
+}
+.splash-logo-wrap {
+  position: relative; z-index: 2;
+  width: 200px; height: 200px;
+  margin-bottom: 24px;
+  animation: float 3s ease-in-out infinite;
+}
+.splash-logo-wrap img {
+  width: 100%; height: 100%; object-fit: contain;
+  filter: drop-shadow(0 0 30px rgba(0,240,255,0.5));
+}
+.splash-loading-text {
+  position: relative; z-index: 2;
+  font-family: var(--font-display);
+  font-size: 14px; letter-spacing: 6px;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  animation: glow-pulse 2s infinite;
+}
+.splash-progress-track {
+  position: relative; z-index: 2;
+  width: 240px; height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px; overflow: hidden;
+}
+.splash-progress-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--accent-fire), var(--accent-cyan));
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 10px var(--accent-cyan);
+}
+.splash-tip {
+  position: relative; z-index: 2;
+  margin-top: 20px;
+  font-size: 12px; color: var(--accent-gold);
+  text-align: center; max-width: 280px;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+/* ==================== REGISTRATION SCREEN ==================== */
+#landing {
+  justify-content: center; text-align: center;
+  padding: 0; position: relative;
+  background: #02020a;
+}
+.reg-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 20%, rgba(255,107,53,0.15) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 80%, rgba(0,212,255,0.1) 0%, transparent 50%),
+              url('./assets/hero-banner.jpg') center/cover no-repeat;
+  opacity: 0.4;
+}
+.reg-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(2,2,10,0.3) 0%, rgba(2,2,10,0.85) 60%, rgba(2,2,10,0.98) 100%);
+}
+.reg-content {
+  position: relative; z-index: 2;
+  width: 100%; max-width: 400px;
+  padding: 40px 24px;
+  animation: slide-up 0.6s ease;
+}
+.reg-logo {
+  width: 140px; height: 140px;
+  margin: 0 auto 20px;
+  filter: drop-shadow(0 0 25px rgba(0,240,255,0.4));
+  animation: float 3s ease-in-out infinite;
+}
+.reg-logo img { width: 100%; height: 100%; object-fit: contain; }
+.reg-title {
+  font-family: var(--font-display);
+  font-size: 2.2rem; font-weight: 900;
+  letter-spacing: 4px;
+  background: linear-gradient(135deg, #ff6b35 0%, #00d4ff 50%, #a8e6ff 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 6px;
+  text-shadow: none;
+}
+.reg-sub {
+  color: var(--text-secondary);
+  font-size: 1rem; letter-spacing: 3px;
+  margin-bottom: 32px;
+  text-transform: uppercase;
+}
+.reg-form { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
+.reg-input {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  color: var(--text); font-size: 16px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+.reg-input:focus {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 20px rgba(0,240,255,0.2);
+  outline: none;
+}
+.reg-input::placeholder { color: var(--text-muted); }
+.reg-avatar-picker {
+  display: flex; flex-wrap: wrap;
+  justify-content: center; gap: 10px;
+  margin-bottom: 8px;
+}
+.reg-avatar-option {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  border: 2px solid transparent;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; cursor: pointer;
+  transition: all 0.2s ease;
+}
+.reg-avatar-option:hover { transform: scale(1.1); border-color: var(--accent-cyan); }
+.reg-avatar-option.selected {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 15px rgba(0,240,255,0.3);
+  background: rgba(0,240,255,0.1);
+}
+.reg-label {
+  font-size: 11px; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+.reg-btn {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff4d2e 50%, #00d4ff 100%);
+  color: #fff; border: none;
+  padding: 16px 32px; border-radius: var(--radius-md);
+  font-family: var(--font-display); font-size: 14px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  cursor: pointer; transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(255,107,53,0.3);
+  position: relative; overflow: hidden;
+}
+.reg-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(255,107,53,0.5), 0 0 30px rgba(0,212,255,0.2);
+}
+.reg-btn:active { transform: scale(0.97); }
+.reg-btn::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+.reg-btn:hover::before { transform: translateX(100%); }
+.reg-skip {
+  color: var(--text-muted); font-size: 12px;
+  cursor: pointer; margin-top: 16px;
+  transition: color 0.2s ease;
+}
+.reg-skip:hover { color: var(--accent-cyan); }
+.reg-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 10px; margin-top: 24px;
+}
+.reg-stat {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-md);
+  padding: 12px 8px;
+}
+.reg-stat-val {
+  font-family: var(--font-display);
+  font-size: 1.1rem; font-weight: 700;
+  color: var(--accent-cyan);
+}
+.reg-stat-label {
+  font-size: 9px; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+/* Logo image usage throughout */
+.app-logo {
+  width: 48px; height: 48px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(0,240,255,0.3));
+}
+.hero-logo-img {
+  width: 80px; height: 80px;
+  object-fit: contain;
+  margin: 0 auto 12px;
+  filter: drop-shadow(0 0 20px rgba(0,240,255,0.3));
+}
+
+/* Enhanced element cards */
+.arena-elem.fire:hover, .arena-elem.fire.selected {
+  border-color: var(--accent-fire);
+  box-shadow: 0 0 30px rgba(255,77,46,0.3), inset 0 0 20px rgba(255,77,46,0.05);
+}
+.arena-elem.water:hover, .arena-elem.water.selected {
+  border-color: var(--accent-water);
+  box-shadow: 0 0 30px rgba(0,212,255,0.3), inset 0 0 20px rgba(0,212,255,0.05);
+}
+.arena-elem.snow:hover, .arena-elem.snow.selected {
+  border-color: var(--accent-snow);
+  box-shadow: 0 0 30px rgba(200,230,255,0.3), inset 0 0 20px rgba(200,230,255,0.05);
+}
+
+/* Enhanced buttons */
+.btn-cta {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff4d2e 50%, #00a8e8 100%);
+  color: #fff; border: none;
+  box-shadow: 0 4px 20px rgba(255,107,53,0.3);
+}
+.btn-cta:hover {
+  box-shadow: 0 6px 30px rgba(255,107,53,0.5), 0 0 20px rgba(0,168,232,0.2);
+}
+
+/* Neon text effect */
+.neon-text {
+  text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 40px currentColor;
+}
+
+/* Fire glow animation */
+@keyframes fire-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(255,107,53,0.3); }
+  50% { box-shadow: 0 0 40px rgba(255,107,53,0.6), 0 0 60px rgba(255,77,46,0.2); }
+}
+
+/* Ice shimmer */
+@keyframes ice-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
 </style>
 </head>
 <body>
+<!-- SPLASH SCREEN -->
+<div class="splash-screen" id="splash-screen">
+  <div class="splash-bg"></div>
+  <div class="splash-logo-wrap">
+    <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:120px;">&#x2694;</div>
+  </div>
+  <div class="splash-loading-text" id="splash-loading-text">Loading</div>
+  <div class="splash-progress-track">
+    <div class="splash-progress-fill" id="splash-progress-fill"></div>
+  </div>
+  <div class="splash-tip" id="splash-tip">TIP: Fire beats Snow. Snow beats Water. Water beats Fire.</div>
+</div>
+
 
 <div class="bg-mesh"></div>
 <div class="particles" id="particles"></div>
@@ -988,35 +1251,45 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-cyan); bo
   </div>
 </div>
 
-<!-- LANDING -->
+<!-- LANDING / REGISTRATION -->
 <div id="landing" class="screen active">
-  <div class="landing-logo-wrap">
-    <div class="logo-container" style="width:160px;height:160px;">
-      <div class="logo-triangle">
-        <svg viewBox="0 0 140 140">
-          <polygon points="70,10 130,120 10,120" fill="none" stroke="rgba(0,240,255,0.4)" stroke-width="2"/>
-          <polygon points="70,25 115,110 25,110" fill="none" stroke="rgba(0,240,255,0.2)" stroke-width="1"/>
-        </svg>
-      </div>
-      <div class="logo-fire">🔥</div>
-      <div class="logo-water">💧</div>
-      <div class="logo-snow">❄️</div>
+  <div class="reg-bg"></div>
+  <div class="reg-overlay"></div>
+  <div class="reg-content">
+    <div class="reg-logo">
+      <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:100px;">&#x2694;</div>
     </div>
-  </div>
-  <div class="landing-title">CRYPTO DOJO</div>
-  <div class="landing-sub">Wager. Battle. Win.</div>
-  <div class="landing-stats">
-    <div class="ls-box"><div class="ls-val" id="stat-online">2,847</div><div class="ls-label">Online</div></div>
-    <div class="ls-box"><div class="ls-val" id="stat-inplay">Ξ 142</div><div class="ls-label">In Play</div></div>
-    <div class="ls-box"><div class="ls-val" id="stat-topwin">Ξ 12.4</div><div class="ls-label">Top Win</div></div>
-    <div class="ls-box"><div class="ls-val">9</div><div class="ls-label">Belts</div></div>
-  </div>
-  <div class="landing-cta">
-    <button class="btn btn-cta" onclick="goToOnboarding()">⚔️ Enter the Dojo</button>
-  </div>
-  <div class="landing-security">
-    <span class="shield">🛡️</span>
-    <span>Provably Fair · Commit-Reveal · Encrypted</span>
+    <div class="reg-title">CRYPTO DOJO</div>
+    <div class="reg-sub">Wager. Battle. Win.</div>
+
+    <div class="reg-form">
+      <div>
+        <div class="reg-label">Choose Your Warrior Name</div>
+        <input type="text" class="reg-input" id="reg-username" placeholder="Enter your name..." maxlength="16" value="">
+      </div>
+      <div>
+        <div class="reg-label">Choose Your Avatar</div>
+        <div class="reg-avatar-picker" id="reg-avatar-picker">
+          <div class="reg-avatar-option selected" data-avatar="&#x1F977;" onclick="selectAvatar(this)">&#x1F977;</div>
+          <div class="reg-avatar-option" data-avatar="&#x1F479;" onclick="selectAvatar(this)">&#x1F479;</div>
+          <div class="reg-avatar-option" data-avatar="&#x1F916;" onclick="selectAvatar(this)">&#x1F916;</div>
+          <div class="reg-avatar-option" data-avatar="&#x1F47D;" onclick="selectAvatar(this)">&#x1F47D;</div>
+          <div class="reg-avatar-option" data-avatar="&#x1F409;" onclick="selectAvatar(this)">&#x1F409;</div>
+          <div class="reg-avatar-option" data-avatar="&#x1F98A;" onclick="selectAvatar(this)">&#x1F98A;</div>
+          <div class="reg-avatar-option" data-avatar="&#x1F42F;" onclick="selectAvatar(this)">&#x1F42F;</div>
+          <div class="reg-avatar-option" data-avatar="&#x1F40D;" onclick="selectAvatar(this)">&#x1F40D;</div>
+        </div>
+      </div>
+      <button class="reg-btn" onclick="registerUser()">&#x2694; Enter the Dojo</button>
+    </div>
+
+    <div class="reg-stats">
+      <div class="reg-stat"><div class="reg-stat-val" id="stat-online">2,847</div><div class="reg-stat-label">Warriors Online</div></div>
+      <div class="reg-stat"><div class="reg-stat-val" id="stat-inplay">&#x39E; 142</div><div class="reg-stat-label">In Play</div></div>
+      <div class="reg-stat"><div class="reg-stat-val">9</div><div class="reg-stat-label">Belt Ranks</div></div>
+    </div>
+
+    <div class="reg-skip" onclick="goToOnboarding()">New here? Take a tour &rarr;</div>
   </div>
 </div>
 
@@ -1725,7 +1998,8 @@ let STATE = {
   stakeRewards: 0,
   tutorialStep: 0,
   tutorialActive: false,
-  lbFilter: 'wins'
+  lbFilter: 'wins',
+  registered: false
 };
 
 // ==================== UTILITIES ====================
@@ -3073,6 +3347,88 @@ if ('serviceWorker' in navigator) {
 }
 
 // ==================== INIT ====================
+
+// ==================== SPLASH SCREEN ====================
+const SPLASH_TIPS = [
+  "TIP: Fire beats Snow. Snow beats Water. Water beats Fire.",
+  "TIP: Use Shield power cards to prevent a loss.",
+  "TIP: Win streaks earn bonus XP and higher payouts.",
+  "TIP: Claim daily rewards to build your bankroll.",
+  "TIP: Higher belts unlock bigger tournaments.",
+  "TIP: Double Or Nothing can turn a small win into a fortune.",
+  "TIP: Reveal power shows your opponent's choice early.",
+  "TIP: Practice mode lets you battle without risking crypto."
+];
+
+function startSplash() {
+  const splash = $id('splash-screen');
+  const progress = $id('splash-progress-fill');
+  const tipEl = $id('splash-tip');
+  if (!splash) return;
+
+  // Random tip
+  if (tipEl) tipEl.textContent = SPLASH_TIPS[Math.floor(Math.random() * SPLASH_TIPS.length)];
+
+  let pct = 0;
+  const interval = setInterval(() => {
+    pct += Math.random() * 15 + 5;
+    if (pct >= 100) {
+      pct = 100;
+      clearInterval(interval);
+      setTimeout(() => {
+        splash.classList.add('hidden');
+        setTimeout(() => {
+          splash.style.display = 'none';
+          checkRegistration();
+        }, 800);
+      }, 400);
+    }
+    if (progress) progress.style.width = pct + '%';
+  }, 200);
+}
+
+// ==================== REGISTRATION ====================
+function selectAvatar(el) {
+  sfxClick();
+  document.querySelectorAll('.reg-avatar-option').forEach(opt => opt.classList.remove('selected'));
+  el.classList.add('selected');
+  haptic('light');
+}
+
+function registerUser() {
+  sfxClick();
+  haptic('medium');
+
+  const usernameInput = $id('reg-username');
+  const selectedAvatar = document.querySelector('.reg-avatar-option.selected');
+  let username = usernameInput ? usernameInput.value.trim() : '';
+
+  if (!username) {
+    username = 'Warrior' + Math.floor(Math.random() * 9999);
+  }
+
+  const avatar = selectedAvatar ? selectedAvatar.dataset.avatar : '??';
+
+  STATE.username = username;
+  STATE.avatar = avatar;
+  STATE.registered = true;
+  STATE.balance = 2.5; // Starting bonus
+
+  saveState();
+  sfxWin();
+  showToast('Welcome to the Dojo, ' + username + '!', 'success');
+  goHome();
+  setTimeout(() => startTutorial(), 1200);
+}
+
+function checkRegistration() {
+  if (STATE.registered) {
+    goHome();
+  } else {
+    showScreen('landing');
+  }
+}
+
 function init() {
   loadState();
   initParticles();
@@ -3083,14 +3439,23 @@ function init() {
   document.documentElement.setAttribute('data-theme', STATE.settings.darkMode ? 'dark' : 'light');
 
   // Apply toggles
-  $id('toggle-theme').classList.toggle('active', STATE.settings.darkMode);
-  $id('toggle-sound').classList.toggle('active', STATE.settings.sound);
-  $id('toggle-music').classList.toggle('active', STATE.settings.music);
-  $id('toggle-haptic').classList.toggle('active', STATE.settings.haptic);
-  $id('toggle-push').classList.toggle('active', STATE.settings.push);
-  $id('toggle-tournament').classList.toggle('active', STATE.settings.tournamentAlerts);
-  $id('toggle-autolock').classList.toggle('active', STATE.settings.autoLock);
-  $id('toggle-address').classList.toggle('active', STATE.settings.showAddress);
+  const tTheme = $id('toggle-theme');
+  const tSound = $id('toggle-sound');
+  const tMusic = $id('toggle-music');
+  const tHaptic = $id('toggle-haptic');
+  const tPush = $id('toggle-push');
+  const tTournament = $id('toggle-tournament');
+  const tAutolock = $id('toggle-autolock');
+  const tAddress = $id('toggle-address');
+
+  if (tTheme) tTheme.classList.toggle('active', STATE.settings.darkMode);
+  if (tSound) tSound.classList.toggle('active', STATE.settings.sound);
+  if (tMusic) tMusic.classList.toggle('active', STATE.settings.music);
+  if (tHaptic) tHaptic.classList.toggle('active', STATE.settings.haptic);
+  if (tPush) tPush.classList.toggle('active', STATE.settings.push);
+  if (tTournament) tTournament.classList.toggle('active', STATE.settings.tournamentAlerts);
+  if (tAutolock) tAutolock.classList.toggle('active', STATE.settings.autoLock);
+  if (tAddress) tAddress.classList.toggle('active', STATE.settings.showAddress);
 
   setTier(STATE.tier || 'mid');
   updateHome();
@@ -3108,9 +3473,12 @@ function init() {
   updateStakingUI();
   renderAdminPlayers();
 
+  // Start splash screen
+  startSplash();
+
   // Request push on first visit
   if (!STATE.settings.push && 'Notification' in window && Notification.permission === 'default') {
-    setTimeout(() => requestPushPermission(), 5000);
+    setTimeout(() => requestPushPermission(), 8000);
   }
 }
 
