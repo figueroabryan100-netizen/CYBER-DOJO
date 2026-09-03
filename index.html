@@ -954,69 +954,70 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-cyan); bo
   background: #02020a;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
-  animation: splash-vanish 3.5s ease forwards;
+  animation: splash-vanish 0.8s ease 3.5s forwards;
 }
 @keyframes splash-vanish {
-  0%, 80% { opacity: 1; visibility: visible; }
-  100% { opacity: 0; visibility: hidden; pointer-events: none; }
-}
-
+  to { opacity: 0; visibility: hidden; pointer-events: none; }
 }
 .splash-bg {
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse at center, rgba(0,212,255,0.15) 0%, transparent 70%),
+  background: radial-gradient(ellipse at center, rgba(0,212,255,0.1) 0%, transparent 70%),
               url('./assets/IMG_4053.jpeg') center/cover no-repeat;
-  opacity: 0.9;
+  opacity: 0.85;
 }
 .splash-logo-wrap {
   position: relative; z-index: 2;
-  width: 200px; height: 200px;
-  margin-bottom: 24px;
+  width: 180px; height: 180px;
+  margin-bottom: 20px;
   animation: float 3s ease-in-out infinite;
 }
 .splash-logo-wrap img {
   width: 100%; height: 100%; object-fit: contain;
-  filter: drop-shadow(0 0 30px rgba(0,240,255,0.5));
+  border-radius: 24px;
+  filter: drop-shadow(0 0 30px rgba(0,240,255,0.4));
 }
 .splash-loading-text {
   position: relative; z-index: 2;
   font-family: var(--font-display);
-  font-size: 14px; letter-spacing: 6px;
+  font-size: 13px; letter-spacing: 8px;
   color: var(--accent-cyan);
   text-transform: uppercase;
   margin-bottom: 16px;
-  animation: glow-pulse 2s infinite;
 }
 .splash-progress-track {
   position: relative; z-index: 2;
-  width: 240px; height: 4px;
-  background: rgba(255,255,255,0.1);
+  width: 220px; height: 3px;
+  background: rgba(255,255,255,0.08);
   border-radius: 4px; overflow: hidden;
 }
 .splash-progress-fill {
   height: 100%; width: 0%;
   background: linear-gradient(90deg, var(--accent-fire), var(--accent-cyan));
   border-radius: 4px;
-  transition: width 0.3s ease;
+  animation: splash-progress 3s ease-out forwards;
   box-shadow: 0 0 10px var(--accent-cyan);
+}
+@keyframes splash-progress {
+  0% { width: 0%; }
+  80% { width: 85%; }
+  100% { width: 100%; }
 }
 .splash-tip {
   position: relative; z-index: 2;
-  margin-top: 20px;
-  font-size: 12px; color: var(--accent-gold);
-  text-align: center; max-width: 280px;
+  margin-top: 18px;
+  font-size: 11px; color: var(--accent-gold);
+  text-align: center; max-width: 260px;
   line-height: 1.5;
-  opacity: 0.8;
+  opacity: 0.75;
 }
 .splash-skip-hint {
   position: relative; z-index: 2;
-  margin-top: 16px;
-  font-size: 11px; color: var(--text-muted);
+  margin-top: 14px;
+  font-size: 10px; color: var(--text-muted);
   text-align: center;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  opacity: 0;
-  animation: fade-in 1s ease 2s forwards;
+  opacity: 0.5;
 }
 
 /* ==================== REGISTRATION SCREEN ==================== */
@@ -1027,50 +1028,48 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-cyan); bo
 }
 .reg-bg {
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 30% 20%, rgba(255,107,53,0.15) 0%, transparent 50%),
-              radial-gradient(ellipse at 70% 80%, rgba(0,212,255,0.1) 0%, transparent 50%),
+  background: radial-gradient(ellipse at 30% 20%, rgba(255,107,53,0.12) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 80%, rgba(0,212,255,0.08) 0%, transparent 50%),
               url('./assets/IMG_4059.jpeg') center/cover no-repeat;
-  opacity: 0.4;
+  opacity: 0.35;
 }
 .reg-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(2,2,10,0.3) 0%, rgba(2,2,10,0.85) 60%, rgba(2,2,10,0.98) 100%);
+  background: linear-gradient(180deg, rgba(2,2,10,0.2) 0%, rgba(2,2,10,0.8) 50%, rgba(2,2,10,0.98) 100%);
 }
 .reg-content {
   position: relative; z-index: 2;
-  width: 100%; max-width: 400px;
-  padding: 40px 24px;
+  width: 100%; max-width: 420px;
+  padding: 32px 20px;
   animation: slide-up 0.6s ease;
 }
 .reg-logo {
-  width: 140px; height: 140px;
-  margin: 0 auto 20px;
-  filter: drop-shadow(0 0 25px rgba(0,240,255,0.4));
+  width: 120px; height: 120px;
+  margin: 0 auto 16px;
   animation: float 3s ease-in-out infinite;
 }
-.reg-logo img { width: 100%; height: 100%; object-fit: contain; }
+.reg-logo img { width: 100%; height: 100%; object-fit: contain; border-radius: 20px; }
 .reg-title {
   font-family: var(--font-display);
-  font-size: 2.2rem; font-weight: 900;
+  font-size: 2rem; font-weight: 900;
   letter-spacing: 4px;
   background: linear-gradient(135deg, #ff6b35 0%, #00d4ff 50%, #a8e6ff 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 6px;
-  text-shadow: none;
 }
 .reg-sub {
   color: var(--text-secondary);
-  font-size: 1rem; letter-spacing: 3px;
-  margin-bottom: 32px;
+  font-size: 0.9rem; letter-spacing: 3px;
+  margin-bottom: 28px;
   text-transform: uppercase;
 }
-.reg-form { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
+.reg-form { display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px; }
 .reg-input {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: var(--radius-md);
-  padding: 16px 20px;
+  padding: 14px 18px;
   color: var(--text); font-size: 16px;
   text-align: center;
   backdrop-filter: blur(10px);
@@ -1078,175 +1077,90 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-cyan); bo
 }
 .reg-input:focus {
   border-color: var(--accent-cyan);
-  box-shadow: 0 0 20px rgba(0,240,255,0.2);
+  box-shadow: 0 0 20px rgba(0,240,255,0.15);
   outline: none;
 }
 .reg-input::placeholder { color: var(--text-muted); }
 .reg-avatar-picker {
   display: flex; flex-wrap: wrap;
-  justify-content: center; gap: 10px;
-  margin-bottom: 8px;
+  justify-content: center; gap: 8px;
+  margin-bottom: 6px;
 }
 .reg-avatar-option {
-  width: 52px; height: 52px;
+  width: 48px; height: 48px;
   border-radius: 50%;
   background: rgba(255,255,255,0.05);
   border: 2px solid transparent;
   display: flex; align-items: center; justify-content: center;
-  font-size: 24px; cursor: pointer;
+  font-size: 22px; cursor: pointer;
   transition: all 0.2s ease;
 }
 .reg-avatar-option:hover { transform: scale(1.1); border-color: var(--accent-cyan); }
 .reg-avatar-option.selected {
   border-color: var(--accent-cyan);
-  box-shadow: 0 0 15px rgba(0,240,255,0.3);
-  background: rgba(0,240,255,0.1);
+  box-shadow: 0 0 12px rgba(0,240,255,0.25);
+  background: rgba(0,240,255,0.08);
 }
 .reg-label {
-  font-size: 11px; color: var(--text-muted);
+  font-size: 10px; color: var(--text-muted);
   text-transform: uppercase; letter-spacing: 2px;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 .reg-btn {
   background: linear-gradient(135deg, #ff6b35 0%, #ff4d2e 50%, #00d4ff 100%);
   color: #fff; border: none;
-  padding: 16px 32px; border-radius: var(--radius-md);
-  font-family: var(--font-display); font-size: 14px; font-weight: 700;
+  padding: 14px 28px; border-radius: var(--radius-md);
+  font-family: var(--font-display); font-size: 13px; font-weight: 700;
   letter-spacing: 2px; text-transform: uppercase;
   cursor: pointer; transition: all 0.3s ease;
   box-shadow: 0 4px 20px rgba(255,107,53,0.3);
-  position: relative; overflow: hidden;
 }
 .reg-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 30px rgba(255,107,53,0.5), 0 0 30px rgba(0,212,255,0.2);
+  box-shadow: 0 6px 30px rgba(255,107,53,0.5), 0 0 20px rgba(0,212,255,0.15);
 }
-.reg-btn:active { transform: scale(0.97); }
-.reg-btn::before {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  transform: translateX(-100%);
-  transition: transform 0.5s ease;
-}
-.reg-btn:hover::before { transform: translateX(100%); }
 .reg-skip {
   color: var(--text-muted); font-size: 12px;
-  cursor: pointer; margin-top: 16px;
+  cursor: pointer; margin-top: 14px;
   transition: color 0.2s ease;
 }
 .reg-skip:hover { color: var(--accent-cyan); }
 .reg-stats {
   display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 10px; margin-top: 24px;
+  gap: 8px; margin-top: 20px;
 }
 .reg-stat {
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.06);
   border-radius: var(--radius-md);
-  padding: 12px 8px;
+  padding: 10px 6px;
 }
 .reg-stat-val {
   font-family: var(--font-display);
-  font-size: 1.1rem; font-weight: 700;
+  font-size: 1rem; font-weight: 700;
   color: var(--accent-cyan);
 }
 .reg-stat-label {
-  font-size: 9px; color: var(--text-muted);
+  font-size: 8px; color: var(--text-muted);
   text-transform: uppercase; letter-spacing: 1px;
-  margin-top: 4px;
-}
-
-/* Logo image usage throughout */
-.app-logo {
-  width: 48px; height: 48px;
-  object-fit: contain;
-  filter: drop-shadow(0 0 10px rgba(0,240,255,0.3));
-}
-.hero-logo-img {
-  width: 80px; height: 80px;
-  object-fit: contain;
-  margin: 0 auto 12px;
-  filter: drop-shadow(0 0 20px rgba(0,240,255,0.3));
-}
-
-/* Enhanced element cards */
-.arena-elem.fire:hover, .arena-elem.fire.selected {
-  border-color: var(--accent-fire);
-  box-shadow: 0 0 30px rgba(255,77,46,0.3), inset 0 0 20px rgba(255,77,46,0.05);
-}
-.arena-elem.water:hover, .arena-elem.water.selected {
-  border-color: var(--accent-water);
-  box-shadow: 0 0 30px rgba(0,212,255,0.3), inset 0 0 20px rgba(0,212,255,0.05);
-}
-.arena-elem.snow:hover, .arena-elem.snow.selected {
-  border-color: var(--accent-snow);
-  box-shadow: 0 0 30px rgba(200,230,255,0.3), inset 0 0 20px rgba(200,230,255,0.05);
-}
-
-/* Enhanced buttons */
-.btn-cta {
-  background: linear-gradient(135deg, #ff6b35 0%, #ff4d2e 50%, #00a8e8 100%);
-  color: #fff; border: none;
-  box-shadow: 0 4px 20px rgba(255,107,53,0.3);
-}
-.btn-cta:hover {
-  box-shadow: 0 6px 30px rgba(255,107,53,0.5), 0 0 20px rgba(0,168,232,0.2);
-}
-
-/* Neon text effect */
-.neon-text {
-  text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 40px currentColor;
-}
-
-/* Fire glow animation */
-@keyframes fire-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(255,107,53,0.3); }
-  50% { box-shadow: 0 0 40px rgba(255,107,53,0.6), 0 0 60px rgba(255,77,46,0.2); }
-}
-
-/* Ice shimmer */
-@keyframes ice-shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  margin-top: 3px;
 }
 
 </style>
 </head>
 <body>
 <!-- SPLASH SCREEN -->
-<div class="splash-screen" id="splash-screen" onclick="var s=this;s.style.opacity='0';s.style.pointerEvents='none';setTimeout(function(){s.style.display='none';var l=document.getElementById('landing');if(l){l.style.display='flex';l.classList.add('active');}},800)">
+<div class="splash-screen" id="splash-screen">
   <div class="splash-bg"></div>
   <div class="splash-logo-wrap">
     <img src="./assets/IMG_4064.jpeg" alt="Crypto Dojo Logo">
   </div>
-  <div class="splash-loading-text">LOADING</div>
+  <div class="splash-loading-text">L O A D I N G</div>
   <div class="splash-progress-track">
-    <div class="splash-progress-fill" id="splash-progress-fill"></div>
+    <div class="splash-progress-fill"></div>
   </div>
   <div class="splash-tip">TIP: Fire beats Snow. Snow beats Water. Water beats Fire.</div>
-  <div class="splash-skip-hint">TAP TO SKIP</div>
-</div>
-<script>
-setTimeout(function(){
-  var s=document.getElementById('splash-screen');
-  if(s){s.style.opacity='0';s.style.pointerEvents='none';}
-  setTimeout(function(){
-    var l=document.getElementById('landing');
-    if(l){l.style.display='flex';l.classList.add('active');}
-    if(s){s.style.display='none';}
-  },800);
-},3500);
-</script>
-  <div class="splash-bg"></div>
-  <div class="splash-logo-wrap">
-    <img src="./assets/IMG_4064.jpeg" alt="Crypto Dojo Logo">
-  </div>
-  <div class="splash-loading-text" id="splash-loading-text">LOADING</div>
-  <div class="splash-progress-track">
-    <div class="splash-progress-fill" id="splash-progress-fill"></div>
-  </div>
-  <div class="splash-tip" id="splash-tip">TIP: Fire beats Snow. Snow beats Water. Water beats Fire.</div>
-  <div class="splash-skip-hint" id="splash-skip-hint">Tap to skip</div>
+  <div class="splash-skip-hint">Tap anywhere to skip</div>
 </div>
 
 
@@ -1293,7 +1207,7 @@ setTimeout(function(){
   <div class="reg-overlay"></div>
   <div class="reg-content">
     <div class="reg-logo">
-      <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:100px;">&#x2694;</div>
+      <img src="./assets/IMG_4064.jpeg" alt="Crypto Dojo">
     </div>
     <div class="reg-title">CRYPTO DOJO</div>
     <div class="reg-sub">Wager. Battle. Win.</div>
@@ -1301,7 +1215,7 @@ setTimeout(function(){
     <div class="reg-form">
       <div>
         <div class="reg-label">Choose Your Warrior Name</div>
-        <input type="text" class="reg-input" id="reg-username" placeholder="Enter your name..." maxlength="16" value="">
+        <input type="text" class="reg-input" id="reg-username" placeholder="Enter your name..." maxlength="16">
       </div>
       <div>
         <div class="reg-label">Choose Your Avatar</div>
@@ -1320,8 +1234,8 @@ setTimeout(function(){
     </div>
 
     <div class="reg-stats">
-      <div class="reg-stat"><div class="reg-stat-val" id="stat-online">2,847</div><div class="reg-stat-label">Warriors Online</div></div>
-      <div class="reg-stat"><div class="reg-stat-val" id="stat-inplay">&#x39E; 142</div><div class="reg-stat-label">In Play</div></div>
+      <div class="reg-stat"><div class="reg-stat-val">2,847</div><div class="reg-stat-label">Warriors Online</div></div>
+      <div class="reg-stat"><div class="reg-stat-val">&#x39E; 142</div><div class="reg-stat-label">In Play</div></div>
       <div class="reg-stat"><div class="reg-stat-val">9</div><div class="reg-stat-label">Belt Ranks</div></div>
     </div>
 
@@ -3384,59 +3298,6 @@ if ('serviceWorker' in navigator) {
 
 // ==================== INIT ====================
 
-// ==================== SPLASH SCREEN ====================
-const SPLASH_TIPS = [
-  "TIP: Fire beats Snow. Snow beats Water. Water beats Fire.",
-  "TIP: Use Shield power cards to prevent a loss.",
-  "TIP: Win streaks earn bonus XP and higher payouts.",
-  "TIP: Claim daily rewards to build your bankroll.",
-  "TIP: Higher belts unlock bigger tournaments.",
-  "TIP: Double Or Nothing can turn a small win into a fortune.",
-  "TIP: Reveal power shows your opponent's choice early.",
-  "TIP: Practice mode lets you battle without risking crypto."
-];
-
-function startSplash() {
-  const splash = $id('splash-screen');
-  const progress = $id('splash-progress-fill');
-  const tipEl = $id('splash-tip');
-  if (!splash) return;
-
-  if (tipEl) tipEl.textContent = SPLASH_TIPS[Math.floor(Math.random() * SPLASH_TIPS.length)];
-
-  let pct = 0;
-  let finished = false;
-
-  const finishSplash = () => {
-    if (finished) return;
-    finished = true;
-    if (progress) progress.style.width = '100%';
-    splash.classList.add('hidden');
-    setTimeout(() => {
-      splash.style.display = 'none';
-      checkRegistration();
-    }, 800);
-  };
-
-  const interval = setInterval(() => {
-    pct += Math.random() * 15 + 5;
-    if (pct >= 100) {
-      clearInterval(interval);
-      setTimeout(finishSplash, 300);
-    }
-    if (progress) progress.style.width = pct + '%';
-  }, 200);
-
-  setTimeout(() => { clearInterval(interval); finishSplash(); }, 3500);
-}
-
-function skipSplash() {
-  const splash = $id('splash-screen');
-  if (!splash || splash.classList.contains('hidden')) return;
-  splash.classList.add('hidden');
-  setTimeout(() => { splash.style.display = 'none'; checkRegistration(); }, 800);
-}
-
 // ==================== REGISTRATION ====================
 function selectAvatar(el) {
   sfxClick();
@@ -3449,7 +3310,7 @@ function registerUser() {
   sfxClick();
   haptic('medium');
 
-  const usernameInput = $id('reg-username');
+  const usernameInput = document.getElementById('reg-username');
   const selectedAvatar = document.querySelector('.reg-avatar-option.selected');
   let username = usernameInput ? usernameInput.value.trim() : '';
 
@@ -3457,12 +3318,12 @@ function registerUser() {
     username = 'Warrior' + Math.floor(Math.random() * 9999);
   }
 
-  const avatar = selectedAvatar ? selectedAvatar.dataset.avatar : '??';
+  const avatar = selectedAvatar ? selectedAvatar.dataset.avatar : '������';
 
   STATE.username = username;
   STATE.avatar = avatar;
   STATE.registered = true;
-  STATE.balance = 2.5; // Starting bonus
+  STATE.balance = 2.5;
 
   saveState();
   sfxWin();
@@ -3488,7 +3349,7 @@ function init() {
   // Apply theme
   document.documentElement.setAttribute('data-theme', STATE.settings.darkMode ? 'dark' : 'light');
 
-  // Apply toggles
+  // Apply toggles (safe)
   const tTheme = $id('toggle-theme');
   const tSound = $id('toggle-sound');
   const tMusic = $id('toggle-music');
@@ -3523,12 +3384,12 @@ function init() {
   updateStakingUI();
   renderAdminPlayers();
 
-  // Start splash screen
-  startSplash();
+  // After splash animation finishes (4s), check registration
+  setTimeout(() => checkRegistration(), 4000);
 
   // Request push on first visit
   if (!STATE.settings.push && 'Notification' in window && Notification.permission === 'default') {
-    setTimeout(() => requestPushPermission(), 8000);
+    setTimeout(() => requestPushPermission(), 10000);
   }
 }
 
