@@ -951,76 +951,73 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-cyan); bo
 /* ==================== SPLASH SCREEN ==================== */
 .splash-screen {
   position: fixed; inset: 0; z-index: 99999;
-  background: #02020a;
+  background: radial-gradient(ellipse at 50% 30%, rgba(0,100,150,0.15) 0%, transparent 60%),
+              radial-gradient(ellipse at 50% 70%, rgba(255,80,30,0.08) 0%, transparent 50%),
+              #02020a;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
-  animation: splash-vanish 0.8s ease 3.5s forwards;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
 }
-@keyframes splash-vanish {
-  to { opacity: 0; visibility: hidden; pointer-events: none; }
-}
-.splash-bg {
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse at center, rgba(0,212,255,0.1) 0%, transparent 70%),
-              url('./assets/IMG_4053.jpeg') center/cover no-repeat;
-  opacity: 0.85;
+.splash-screen.done {
+  opacity: 0; visibility: hidden; pointer-events: none;
 }
 .splash-logo-wrap {
   position: relative; z-index: 2;
-  width: 180px; height: 180px;
-  margin-bottom: 20px;
+  width: 160px; height: 160px;
+  margin-bottom: 24px;
   animation: float 3s ease-in-out infinite;
 }
 .splash-logo-wrap img {
   width: 100%; height: 100%; object-fit: contain;
   border-radius: 24px;
-  filter: drop-shadow(0 0 30px rgba(0,240,255,0.4));
+  filter: drop-shadow(0 0 30px rgba(0,200,255,0.35));
 }
 .splash-loading-text {
   position: relative; z-index: 2;
   font-family: var(--font-display);
-  font-size: 13px; letter-spacing: 8px;
+  font-size: 12px; letter-spacing: 10px;
   color: var(--accent-cyan);
   text-transform: uppercase;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 .splash-progress-track {
   position: relative; z-index: 2;
-  width: 220px; height: 3px;
-  background: rgba(255,255,255,0.08);
+  width: 200px; height: 3px;
+  background: rgba(255,255,255,0.06);
   border-radius: 4px; overflow: hidden;
 }
 .splash-progress-fill {
   height: 100%; width: 0%;
   background: linear-gradient(90deg, var(--accent-fire), var(--accent-cyan));
   border-radius: 4px;
-  animation: splash-progress 3s ease-out forwards;
-  box-shadow: 0 0 10px var(--accent-cyan);
+  animation: splash-bar 3.2s ease-out forwards;
+  box-shadow: 0 0 8px var(--accent-cyan);
 }
-@keyframes splash-progress {
+@keyframes splash-bar {
   0% { width: 0%; }
-  80% { width: 85%; }
+  70% { width: 80%; }
   100% { width: 100%; }
 }
 .splash-tip {
   position: relative; z-index: 2;
-  margin-top: 18px;
+  margin-top: 24px;
   font-size: 11px; color: var(--accent-gold);
-  text-align: center; max-width: 260px;
-  line-height: 1.5;
-  opacity: 0.75;
+  text-align: center; max-width: 280px;
+  line-height: 1.6;
+  opacity: 0.7;
 }
-.splash-skip-hint {
+.splash-skip {
   position: relative; z-index: 2;
-  margin-top: 14px;
+  margin-top: 16px;
   font-size: 10px; color: var(--text-muted);
   text-align: center;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  opacity: 0.5;
+  opacity: 0;
+  animation: fade-in 1s ease 2s forwards;
 }
 
-/* ==================== REGISTRATION SCREEN ==================== */
+/* ==================== REGISTRATION ==================== */
 #landing {
   justify-content: center; text-align: center;
   padding: 0; position: relative;
@@ -1028,30 +1025,30 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-cyan); bo
 }
 .reg-bg {
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 30% 20%, rgba(255,107,53,0.12) 0%, transparent 50%),
-              radial-gradient(ellipse at 70% 80%, rgba(0,212,255,0.08) 0%, transparent 50%),
+  background: radial-gradient(ellipse at 50% 20%, rgba(255,100,50,0.08) 0%, transparent 50%),
+              radial-gradient(ellipse at 50% 80%, rgba(0,150,200,0.06) 0%, transparent 50%),
               url('./assets/IMG_4059.jpeg') center/cover no-repeat;
-  opacity: 0.35;
+  opacity: 0.3;
 }
 .reg-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(2,2,10,0.2) 0%, rgba(2,2,10,0.8) 50%, rgba(2,2,10,0.98) 100%);
+  background: linear-gradient(180deg, rgba(2,2,10,0.3) 0%, rgba(2,2,10,0.85) 55%, rgba(2,2,10,0.98) 100%);
 }
 .reg-content {
   position: relative; z-index: 2;
   width: 100%; max-width: 420px;
-  padding: 32px 20px;
-  animation: slide-up 0.6s ease;
+  padding: 40px 24px;
+  animation: slide-up 0.5s ease;
 }
 .reg-logo {
-  width: 120px; height: 120px;
+  width: 100px; height: 100px;
   margin: 0 auto 16px;
   animation: float 3s ease-in-out infinite;
 }
 .reg-logo img { width: 100%; height: 100%; object-fit: contain; border-radius: 20px; }
 .reg-title {
   font-family: var(--font-display);
-  font-size: 2rem; font-weight: 900;
+  font-size: 1.8rem; font-weight: 900;
   letter-spacing: 4px;
   background: linear-gradient(135deg, #ff6b35 0%, #00d4ff 50%, #a8e6ff 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -1060,7 +1057,7 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-cyan); bo
 }
 .reg-sub {
   color: var(--text-secondary);
-  font-size: 0.9rem; letter-spacing: 3px;
+  font-size: 0.85rem; letter-spacing: 3px;
   margin-bottom: 28px;
   text-transform: uppercase;
 }
@@ -1077,29 +1074,28 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-cyan); bo
 }
 .reg-input:focus {
   border-color: var(--accent-cyan);
-  box-shadow: 0 0 20px rgba(0,240,255,0.15);
+  box-shadow: 0 0 20px rgba(0,200,255,0.15);
   outline: none;
 }
 .reg-input::placeholder { color: var(--text-muted); }
 .reg-avatar-picker {
   display: flex; flex-wrap: wrap;
   justify-content: center; gap: 8px;
-  margin-bottom: 6px;
 }
 .reg-avatar-option {
-  width: 48px; height: 48px;
+  width: 46px; height: 46px;
   border-radius: 50%;
   background: rgba(255,255,255,0.05);
   border: 2px solid transparent;
   display: flex; align-items: center; justify-content: center;
-  font-size: 22px; cursor: pointer;
+  font-size: 20px; cursor: pointer;
   transition: all 0.2s ease;
 }
 .reg-avatar-option:hover { transform: scale(1.1); border-color: var(--accent-cyan); }
 .reg-avatar-option.selected {
   border-color: var(--accent-cyan);
-  box-shadow: 0 0 12px rgba(0,240,255,0.25);
-  background: rgba(0,240,255,0.08);
+  box-shadow: 0 0 12px rgba(0,200,255,0.25);
+  background: rgba(0,200,255,0.08);
 }
 .reg-label {
   font-size: 10px; color: var(--text-muted);
@@ -1107,17 +1103,18 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-cyan); bo
   margin-bottom: 6px;
 }
 .reg-btn {
-  background: linear-gradient(135deg, #ff6b35 0%, #ff4d2e 50%, #00d4ff 100%);
+  background: linear-gradient(135deg, #ff6b35 0%, #ff4d2e 50%, #00a8e8 100%);
   color: #fff; border: none;
   padding: 14px 28px; border-radius: var(--radius-md);
   font-family: var(--font-display); font-size: 13px; font-weight: 700;
   letter-spacing: 2px; text-transform: uppercase;
   cursor: pointer; transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(255,107,53,0.3);
+  box-shadow: 0 4px 20px rgba(255,100,50,0.3);
+  margin-top: 4px;
 }
 .reg-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 30px rgba(255,107,53,0.5), 0 0 20px rgba(0,212,255,0.15);
+  box-shadow: 0 6px 25px rgba(255,100,50,0.45), 0 0 15px rgba(0,168,232,0.15);
 }
 .reg-skip {
   color: var(--text-muted); font-size: 12px;
@@ -1127,7 +1124,7 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-cyan); bo
 .reg-skip:hover { color: var(--accent-cyan); }
 .reg-stats {
   display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 8px; margin-top: 20px;
+  gap: 8px; margin-top: 18px;
 }
 .reg-stat {
   background: rgba(255,255,255,0.03);
@@ -1137,7 +1134,7 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-cyan); bo
 }
 .reg-stat-val {
   font-family: var(--font-display);
-  font-size: 1rem; font-weight: 700;
+  font-size: 0.95rem; font-weight: 700;
   color: var(--accent-cyan);
 }
 .reg-stat-label {
@@ -1151,17 +1148,28 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-cyan); bo
 <body>
 <!-- SPLASH SCREEN -->
 <div class="splash-screen" id="splash-screen">
-  <div class="splash-bg"></div>
   <div class="splash-logo-wrap">
-    <img src="./assets/IMG_4064.jpeg" alt="Crypto Dojo Logo">
+    <img src="./assets/IMG_4064.jpeg" alt="Crypto Dojo Logo" onerror="this.style.display='none'">
   </div>
   <div class="splash-loading-text">L O A D I N G</div>
   <div class="splash-progress-track">
     <div class="splash-progress-fill"></div>
   </div>
   <div class="splash-tip">TIP: Fire beats Snow. Snow beats Water. Water beats Fire.</div>
-  <div class="splash-skip-hint">Tap anywhere to skip</div>
+  <div class="splash-skip">tap to skip</div>
 </div>
+<script>
+(function(){
+  var splash = document.getElementById('splash-screen');
+  if(!splash) return;
+  var hide = function(){
+    splash.classList.add('done');
+    setTimeout(function(){ splash.style.display='none'; }, 600);
+  };
+  splash.addEventListener('click', hide);
+  setTimeout(hide, 3500);
+})();
+</script>
 
 
 <div class="bg-mesh"></div>
@@ -1207,7 +1215,7 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-cyan); bo
   <div class="reg-overlay"></div>
   <div class="reg-content">
     <div class="reg-logo">
-      <img src="./assets/IMG_4064.jpeg" alt="Crypto Dojo">
+      <img src="./assets/IMG_4064.jpeg" alt="Crypto Dojo" onerror="this.style.display='none'">
     </div>
     <div class="reg-title">CRYPTO DOJO</div>
     <div class="reg-sub">Wager. Battle. Win.</div>
@@ -1220,14 +1228,14 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-cyan); bo
       <div>
         <div class="reg-label">Choose Your Avatar</div>
         <div class="reg-avatar-picker" id="reg-avatar-picker">
-          <div class="reg-avatar-option selected" data-avatar="&#x1F977;" onclick="selectAvatar(this)">&#x1F977;</div>
-          <div class="reg-avatar-option" data-avatar="&#x1F479;" onclick="selectAvatar(this)">&#x1F479;</div>
-          <div class="reg-avatar-option" data-avatar="&#x1F916;" onclick="selectAvatar(this)">&#x1F916;</div>
-          <div class="reg-avatar-option" data-avatar="&#x1F47D;" onclick="selectAvatar(this)">&#x1F47D;</div>
-          <div class="reg-avatar-option" data-avatar="&#x1F409;" onclick="selectAvatar(this)">&#x1F409;</div>
-          <div class="reg-avatar-option" data-avatar="&#x1F98A;" onclick="selectAvatar(this)">&#x1F98A;</div>
-          <div class="reg-avatar-option" data-avatar="&#x1F42F;" onclick="selectAvatar(this)">&#x1F42F;</div>
-          <div class="reg-avatar-option" data-avatar="&#x1F40D;" onclick="selectAvatar(this)">&#x1F40D;</div>
+          <div class="reg-avatar-option selected" data-avatar="ninja" onclick="selectAvatar(this)">&#x1F977;</div>
+          <div class="reg-avatar-option" data-avatar="ogre" onclick="selectAvatar(this)">&#x1F479;</div>
+          <div class="reg-avatar-option" data-avatar="robot" onclick="selectAvatar(this)">&#x1F916;</div>
+          <div class="reg-avatar-option" data-avatar="alien" onclick="selectAvatar(this)">&#x1F47D;</div>
+          <div class="reg-avatar-option" data-avatar="dragon" onclick="selectAvatar(this)">&#x1F409;</div>
+          <div class="reg-avatar-option" data-avatar="fox" onclick="selectAvatar(this)">&#x1F98A;</div>
+          <div class="reg-avatar-option" data-avatar="tiger" onclick="selectAvatar(this)">&#x1F42F;</div>
+          <div class="reg-avatar-option" data-avatar="snake" onclick="selectAvatar(this)">&#x1F40D;</div>
         </div>
       </div>
       <button class="reg-btn" onclick="registerUser()">&#x2694; Enter the Dojo</button>
@@ -3301,7 +3309,7 @@ if ('serviceWorker' in navigator) {
 // ==================== REGISTRATION ====================
 function selectAvatar(el) {
   sfxClick();
-  document.querySelectorAll('.reg-avatar-option').forEach(opt => opt.classList.remove('selected'));
+  document.querySelectorAll('.reg-avatar-option').forEach(function(opt){ opt.classList.remove('selected'); });
   el.classList.add('selected');
   haptic('light');
 }
@@ -3310,15 +3318,15 @@ function registerUser() {
   sfxClick();
   haptic('medium');
 
-  const usernameInput = document.getElementById('reg-username');
-  const selectedAvatar = document.querySelector('.reg-avatar-option.selected');
-  let username = usernameInput ? usernameInput.value.trim() : '';
+  var usernameInput = document.getElementById('reg-username');
+  var selectedAvatar = document.querySelector('.reg-avatar-option.selected');
+  var username = usernameInput ? usernameInput.value.trim() : '';
 
   if (!username) {
     username = 'Warrior' + Math.floor(Math.random() * 9999);
   }
 
-  const avatar = selectedAvatar ? selectedAvatar.dataset.avatar : '������';
+  var avatar = selectedAvatar ? selectedAvatar.dataset.avatar : 'ninja';
 
   STATE.username = username;
   STATE.avatar = avatar;
@@ -3329,7 +3337,7 @@ function registerUser() {
   sfxWin();
   showToast('Welcome to the Dojo, ' + username + '!', 'success');
   goHome();
-  setTimeout(() => startTutorial(), 1200);
+  setTimeout(function(){ startTutorial(); }, 1200);
 }
 
 function checkRegistration() {
@@ -3349,15 +3357,15 @@ function init() {
   // Apply theme
   document.documentElement.setAttribute('data-theme', STATE.settings.darkMode ? 'dark' : 'light');
 
-  // Apply toggles (safe)
-  const tTheme = $id('toggle-theme');
-  const tSound = $id('toggle-sound');
-  const tMusic = $id('toggle-music');
-  const tHaptic = $id('toggle-haptic');
-  const tPush = $id('toggle-push');
-  const tTournament = $id('toggle-tournament');
-  const tAutolock = $id('toggle-autolock');
-  const tAddress = $id('toggle-address');
+  // Apply toggles safely
+  var tTheme = $id('toggle-theme');
+  var tSound = $id('toggle-sound');
+  var tMusic = $id('toggle-music');
+  var tHaptic = $id('toggle-haptic');
+  var tPush = $id('toggle-push');
+  var tTournament = $id('toggle-tournament');
+  var tAutolock = $id('toggle-autolock');
+  var tAddress = $id('toggle-address');
 
   if (tTheme) tTheme.classList.toggle('active', STATE.settings.darkMode);
   if (tSound) tSound.classList.toggle('active', STATE.settings.sound);
@@ -3384,12 +3392,12 @@ function init() {
   updateStakingUI();
   renderAdminPlayers();
 
-  // After splash animation finishes (4s), check registration
-  setTimeout(() => checkRegistration(), 4000);
+  // After splash hides (~4.2s), check if user needs to register
+  setTimeout(function(){ checkRegistration(); }, 4200);
 
   // Request push on first visit
   if (!STATE.settings.push && 'Notification' in window && Notification.permission === 'default') {
-    setTimeout(() => requestPushPermission(), 10000);
+    setTimeout(function(){ requestPushPermission(); }, 10000);
   }
 }
 
