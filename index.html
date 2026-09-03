@@ -954,10 +954,13 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-cyan); bo
   background: #02020a;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  animation: splash-vanish 3.5s ease forwards;
 }
-.splash-screen.hidden {
-  opacity: 0; transform: scale(1.1); pointer-events: none;
+@keyframes splash-vanish {
+  0%, 80% { opacity: 1; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; pointer-events: none; }
+}
+
 }
 .splash-bg {
   position: absolute; inset: 0;
